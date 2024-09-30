@@ -15,7 +15,7 @@ public class CustomerService {
         return customerList;
     }
 
-    public Customer addCustomer(@RequestBody Customer customer)
+    public Customer addCustomer(Customer customer)
     {
         customerList.add(customer);
         return customer;

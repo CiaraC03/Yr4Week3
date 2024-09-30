@@ -1,21 +1,24 @@
 package ie.atu.week3_microservice;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.validation.constraints.*;
+
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Customer {
-    @NotBlank(message= "Name must not be blank")
+    @NotBlank
     private String name;
 
-    @Email(message = "email should be valid")
+    @Email
     private String email;
 
-    @Positive(message = "age has to be positive")
+    @Positive
     private int age;
 
 }

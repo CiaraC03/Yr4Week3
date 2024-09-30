@@ -1,7 +1,10 @@
 package ie.atu.week3_microservice;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -23,7 +26,7 @@ public class CustomerController {
     }
 
     @PostMapping("/customers")
-    public Customer addCustomer(@RequestBody Customer customer){
+    public Customer addCustomer(@Valid @RequestBody Customer customer){
         return customerService.addCustomer(customer);
     }
 
