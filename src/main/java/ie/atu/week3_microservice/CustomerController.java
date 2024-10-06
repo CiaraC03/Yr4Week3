@@ -12,27 +12,23 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private NotificationsServiceClient notificationsServiceClient;
 
     @Autowired
-    public CustomerController(CustomerService customerService)
+    public CustomerController(CustomerService customerService, NotificationsServiceClient notificationsServiceClient)
     {
         this.customerService = customerService;
+        this.notificationsServiceClient = notificationsServiceClient;
     }
 
-    @GetMapping("/customers")
-    public List<Customer> getCustomerList()
-    {
-        return customerService.getCustomerList();
-    }
+
 
     @PostMapping("/customers")
-    public Customer addCustomer(@Valid @RequestBody Customer customer){
-        return customerService.addCustomer(customer);
+    public String registerCustomer(@Valid @RequestBody Customer customer){
+        String confirm = notificationsServiceClient.someDetails(customer);
+        String response = confirm + " " + customerService.notificationMessage(customer);
+        return response;
     }
 
-    @PutMapping("/updateCustomers")
-    public Customer updateCustomer(@RequestBody Customer customer)
-    {
-        return customerService.updateCustomer(customer);
-    }
+
 }
